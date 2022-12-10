@@ -6,4 +6,4 @@ Does NOT encrypt anything, very basic stuff.
 Compile as you would any other CMake project, no extra steps required
 
 ## Run
-```./pyDropper <input file>```
+```./pyDropper <input executable>```
