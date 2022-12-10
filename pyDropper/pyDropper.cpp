@@ -1,7 +1,4 @@
-﻿// pyDropper-basic.cpp : This file contains the 'main' function. Program execution begins and ends there.
-//
-
-#include <iostream>
+﻿#include <iostream>
 #include <vector>
 #include <string>
 #include <fstream>
@@ -9,7 +6,7 @@
 #include "b64.h"
 
 int main(int argc, char* argv[]) {
-	// Check if the user provided a file to encode
+    // Check if the user provided a file to encode
     if (argc != 2) {
         std::cout << "Usage: " << argv[0] << " <executable to drop>" << std::endl;
         return 1;
