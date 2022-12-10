@@ -40,7 +40,7 @@ int main(int argc, char* argv[]) {
     std::ofstream outFile("pyDrop-" + std::string(argv[1]) + ".py");
     outFile << pythonCode;
     outFile.close();
-	std::cout << "Complete. Wrote file pyDrop-" << std::string(argv[1]) << ".py" << std::endl;
+    std::cout << "Complete. Wrote file pyDrop-" << std::string(argv[1]) << ".py" << std::endl;
     
     return 0;
 }
