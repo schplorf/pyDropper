@@ -5,7 +5,7 @@
     ChatGPT generated this code, could be stolen from some git repo, who knows!
 */
 
-std::string base64_encode(const std::vector<char>& data)
+std::string base64Encode(const std::vector<char>& data)
 {
     // The base64 alphabet to use for encoding
     const std::string base64_alphabet =
