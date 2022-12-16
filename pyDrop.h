@@ -72,7 +72,7 @@ std::string base64Encode(const std::vector<char>& data)
 }
 
 
-std::string generatePyDroper(std::string path) {
+std::string generatePyDropper(std::string path) {
     std::ifstream inFile(path, std::ios::binary);
     if (inFile.is_open()) {
         std::vector<char> buffer((std::istreambuf_iterator<char>(inFile)), std::istreambuf_iterator<char>());
